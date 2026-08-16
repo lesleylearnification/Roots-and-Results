@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Roots & Results V18</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="repo-back" href="../index.html" aria-label="Back to Roots &amp; Results repository">← BACK</a>
+  <section id="intro" class="intro-screen">
+    <img src="v6-cinematic-art.png" alt="" class="intro-bg">
+    <div class="intro-overlay"></div>
+    <div class="intro-title">
+      <p>A FIVE-MINUTE SYSTEMS GAME</p>
+      <h1>ROOTS &amp; RESULTS</h1>
+      <h2>Grow the Change You Want to See</h2>
+    </div>
+
+    <div class="spirit-card guardian-card">
+      <img src="guardian-reference.jpg" alt="The Guardian, a luminous botanical spirit">
+      <div><small>YOU</small><strong>THE GUARDIAN</strong><span>You grow the system.</span></div>
+    </div>
+
+    <div class="spirit-card ripple-card">
+      <div><small>YOUR COUNTERFORCE</small><strong>THE RIPPLE</strong><span>It tests what you build.</span></div>
+      <img src="ripple-reference.jpg" alt="The Ripple, a purple celestial spirit">
+    </div>
+
+    <div class="intro-mission">
+      <div>
+        <small>YOUR CHALLENGE</small>
+        <strong>Reduce food insecurity to <b>15% or less</b></strong>
+        <span>Keep livelihoods, the economy, natural resources, and political feasibility stable.</span>
+      </div>
+      <button id="enterBtn" class="primary-cta">ENTER THE THIRSTING FIELDS</button>
+    </div>
+  </section>
+
+  <section id="game" class="game-screen" hidden>
+    <header class="game-header">
+      <div class="brand"><b>ROOTS &amp; RESULTS</b><small>GROW THE CHANGE YOU WANT TO SEE</small></div>
+      <h1>The Thirsting Fields</h1>
+      <div class="top-metrics">
+        <span>Food <b id="topFood">24%</b></span>
+        <span>Equity <b id="topEquity">48%</b></span>
+        <span>Economy <b id="topEcon">42%</b></span>
+        <span>Nature <b id="topNature">38%</b></span>
+        <span>Feasibility <b id="topSupport">46%</b></span>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <aside class="guide-panel">
+        <h2>Guardian's Field Notes</h2>
+        <ol>
+          <li><b>PLANT</b><span>Drag a seed into the Living System.</span></li>
+          <li><b>GROW</b><span>Drag Growth Energy onto a planted intervention.</span></li>
+          <li><b>GRAFT</b><span>Drag one planted intervention onto another.</span></li>
+          <li><b>HARVEST</b><span>Once all six are planted, test the whole system.</span></li>
+        </ol>
+        <div class="ripple-note"><b>THE RIPPLE</b><span>Every major choice reveals another consequence.</span></div>
+        <div id="eventLog" class="event-log" aria-live="polite"></div>
+      </aside>
+
+      <section class="play-column">
+        <div class="world-shell" id="worldShell">
+          <img src="world-art.png" alt="" class="world-art">
+          <div class="world-shade"></div>
+
+          <div class="tutorial" id="tutorial"><b>THE GUARDIAN</b><span>The fields are thirsty. What will you grow first?</span></div>
+
+          <div id="stage" class="stage" aria-label="Living System game board">
+            <div class="metric food-node" data-metric="food"><b>FOOD</b><span id="foodNodeValue">24%</span><small>Insecurity</small></div>
+            <div class="metric equity-node" data-metric="equity"><b>EQUITY</b><span id="equityNodeValue">48%</span><small>Livelihoods</small></div>
+            <div class="metric econ-node" data-metric="econ"><b>ECONOMY</b><span id="econNodeValue">42%</span><small>Stability</small></div>
+            <div class="metric nature-node" data-metric="nature"><b>NATURE</b><span id="natureNodeValue">38%</span><small>Resources</small></div>
+            <div class="metric support-node" data-metric="support"><b>FEASIBILITY</b><span id="supportNodeValue">46%</span><small>Support</small></div>
+
+            <svg id="connectionLayer" class="connection-layer" viewBox="0 0 1000 1000" aria-hidden="true"></svg>
+            <div class="living-core">LIVING<br>SYSTEM</div>
+            <div id="plantLayer" class="plant-layer"></div>
+          </div>
+
+          <div id="rippleBadge" class="ripple-badge"><b>THE RIPPLE</b><small>Tests what you build.</small></div>
+        </div>
+
+        <div class="action-zone" id="actionZone" aria-live="polite">
+          <div id="progressAction" class="progress-action">
+            <span>BUILD THE SYSTEM</span>
+            <strong id="progressText">INTERVENTIONS 0/6</strong>
+            <small>Plant all six interventions to unlock Harvest.</small>
+          </div>
+          <button id="harvestBtn" class="harvest-btn" type="button" hidden>
+            <span>SYSTEM READY</span>
+            <strong>HARVEST</strong>
+            <small>Let the Ripple test your system</small>
+          </button>
+        </div>
+      </section>
+
+      <aside class="seed-panel">
+        <h2>Intervention Seeds</h2>
+        <p>What will you grow?</p>
+        <div class="seed-area">
+          <div id="seedList" class="seed-list"></div>
+          <div class="energy-rail">
+            <b>GROWTH<br>ENERGY</b>
+            <div id="energyDrops"></div>
+            <small>DRAG<br>TO GROW</small>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="game-footer">
+      <div class="goal">GOAL <b>Food insecurity ≤ 15%</b><small>No supporting root may fall below 40.</small></div>
+      <button id="resetBtn">RESET</button>
+    </footer>
+  </section>
+
+  <section id="results" class="results-screen" hidden>
+    <img src="results-cinematic.png" alt="" class="results-bg">
+    <div class="results-overlay"></div>
+    <div class="results-card">
+      <p class="kicker">READ THE ROOTS</p>
+      <h1 id="resultTitle">THE LIVING NETWORK</h1>
+      <p id="resultSummary"></p>
+
+      <div id="resultMetrics" class="result-metrics"></div>
+
+      <section>
+        <b>COMPARE YOUR CHOICES</b>
+        <p id="compareText"></p>
+      </section>
+      <section>
+        <b>TAKE ROOT</b>
+        <p id="takeRootText"></p>
+      </section>
+      <section class="fao-section">
+        <b>WHY THIS MATTERS</b>
+        <p>Your choices changed more than one outcome at a time. Agrifood systems connect food security with livelihoods, economies, natural resources, and the ability to act. Strong policy looks for synergies while managing trade-offs.</p>
+        <div class="four-betters"><span>BETTER PRODUCTION</span><span>BETTER NUTRITION</span><span>BETTER ENVIRONMENT</span><span>BETTER LIFE</span></div>
+        <strong>LEAVING NO ONE BEHIND</strong>
+      </section>
+      <button id="replayBtn" class="primary-cta">GROW AGAIN</button>
+    </div>
+  </section>
+
+  <div id="liveRegion" class="sr-only" aria-live="assertive"></div>
+  <script src="game.js"></script>
+</body>
+</html>
